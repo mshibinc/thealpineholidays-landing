@@ -1,112 +1,158 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Alpine Holidays</title>
 
-    <title>Coming Soon.</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
     <div class='black'>
         <div class="coming_soon">
-            COMING
+            Under
         </div>
     </div>
     <div class="white">
         <div class="coming_soon">
-            SOON<span class="blinking-dots"><span>.</span><span>.</span><span>.</span></span>
+            maintenance<span class="blinking-dots"><span>.</span><span>.</span><span>.</span></span>
         </div>
     </div>
 
+    <!-- Social Links -->
+    <div class="social-icons">
+        <a href="https://wa.me/917736173999" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/thealpineholidays/" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
 </body>
+
 <style>
     @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:700);
-html, body{
-    height: 100%;
-    margin:0px;
-    overflow:hidden;
-}
 
-div {
-  font-family: 'Josefin Slab', serif;
-  font-size:160px;
-  position:relative;
-}
+    html,
+    body {
+        height: 100%;
+        margin: 0px;
+        overflow: hidden;
+    }
 
-.black .coming_soon {
-  position:absolute;
-  bottom: -40px;
-}
-.white .coming_soon {
-  position:absolute;
-  top: -8px;
-}
-.white{
-  color:#000000;
-  background-color:#fcfcfe;
-  /* width:100%; */
-  height:50%;
-  padding:0px !important;
-}
-.black {
-  color:#fcfcfe;
-  background-color:#000000;
-  /* width:100%; */
-  height:50%;
-  padding:0px !important;
-}
+    div {
+        font-family: 'Josefin Slab', serif;
+        font-size: 160px;
+        position: relative;
+    }
 
-.coming_soon{
-  width: 85%;
-  margin: auto 0;
-  left: 5%;
-}
+    .black .coming_soon {
+        position: absolute;
+        bottom: -40px;
+    }
 
-@media screen and (max-width: 767px) {
-  .black .coming_soon{
-    bottom: -18px;
-  }
-  .white .coming_soon{
-    top: -4px;
-  }
-  div{
-    font-size: 72px;
-  }
-  
-}
+    .white .coming_soon {
+        position: absolute;
+        top: -8px;
+    }
 
+    .white {
+        color: #000000;
+        background-color: #fcfcfe;
+        height: 50%;
+        padding: 0px !important;
+    }
 
+    .black {
+        color: #fcfcfe;
+        background-color: #000000;
+        height: 50%;
+        padding: 0px !important;
+    }
 
-.blinking-dots {
-  display: inline-block;
-}
+    .coming_soon {
+        width: 85%;
+        margin: auto 0;
+        left: 5%;
+    }
 
-.blinking-dots span {
-  opacity: 0;
-  animation: blink 1.5s infinite;
-}
+    @media screen and (max-width: 767px) {
+        .black .coming_soon {
+            bottom: -18px;
+        }
 
-.blinking-dots span:nth-child(1) {
-  animation-delay: 0s;
-}
+        .white .coming_soon {
+            top: -4px;
+        }
 
-.blinking-dots span:nth-child(2) {
-  animation-delay: 0.3s;
-}
+        div {
+            font-size: 72px;
+        }
+    }
 
-.blinking-dots span:nth-child(3) {
-  animation-delay: 0.6s;
-}
+    .blinking-dots {
+        display: inline-block;
+    }
 
-@keyframes blink {
-  0%, 100% {
-      opacity: 0;
-  }
-  50% {
-      opacity: 1;
-  }
-}
+    .blinking-dots span {
+        opacity: 0;
+        animation: blink 1.5s infinite;
+    }
+
+    .blinking-dots span:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .blinking-dots span:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .blinking-dots span:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    /** Social Icons **/
+    .social-icons {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        z-index: 100;
+    }
+
+    .social-icons a {
+        margin: 0 20px;
+        font-size: 48px;
+        color: #000;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+
+    .social-icons a:hover {
+        opacity: 0.6;
+    }
+
+    @media screen and (max-width: 767px) {
+        .social-icons a {
+            font-size: 32px;
+            margin: 0 15px;
+        }
+    }
 </style>
+
 </html>
