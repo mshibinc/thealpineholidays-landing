@@ -10,12 +10,9 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-
 <body>
     <div class='black'>
-        <div class="coming_soon">
-            Under
-        </div>
+        <div class="coming_soon">Under</div>
     </div>
     <div class="white">
         <div class="coming_soon">
@@ -23,135 +20,162 @@
         </div>
     </div>
 
-    <!-- Social Links -->
+    <div class="contact-footer">
+        <div class="address-card">
+            <div class="address-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <span class="country-tag">Dubai(UAE)</span>
+                    <p>1st Floor, Block A, Spectrum Building, Oud Metha</p>
+                </div>
+            </div>
+            <div class="address-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <span class="country-tag">India</span>
+                    <p>3rd Floor, HiLITE Business Park, Kozhikode, Kerala, 673014</p>
+                </div>
+            </div>
+            <div class="address-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <span class="country-tag">Georgia</span>
+                    <p>2nd Floor, Hualing Tbilisi Sea Plaza, 22 J. Lezhava str, 0152</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="social-icons">
-        <a href="https://wa.me/917736173999" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.instagram.com/thealpineholidays/" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
+        <a href="https://wa.me/971501879007" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/thealpineholidays/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/thealpineholidays/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
 </body>
 
 <style>
     @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:700);
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap');
 
-    html,
-    body {
-        height: 100%;
-        margin: 0px;
-        overflow: hidden;
-    }
+    html, body { height: 100%; margin: 0; overflow: hidden; background-color: #fcfcfe; }
+    div { font-family: 'Josefin Slab', serif; position: relative; }
 
-    div {
-        font-family: 'Josefin Slab', serif;
-        font-size: 160px;
-        position: relative;
-    }
+    /* Main Typography */
+    .coming_soon { font-size: 160px; width: 85%; margin: auto 0; left: 5%; letter-spacing: -5px; }
+    .black { color: #fcfcfe; background-color: #000; height: 50vh; }
+    .white { color: #000; background-color: #fcfcfe; height: 50vh; }
+    .black .coming_soon { position: absolute; bottom: -40px; }
+    .white .coming_soon { position: absolute; top: -8px; }
 
-    .black .coming_soon {
+    /* Attractive Address Block */
+    .contact-footer {
         position: absolute;
-        bottom: -40px;
+        bottom: 30px;
+        right: 40px;
+        z-index: 200;
     }
 
-    .white .coming_soon {
-        position: absolute;
-        top: -8px;
+    .address-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 320px;
     }
 
-    .white {
-        color: #000000;
-        background-color: #fcfcfe;
-        height: 50%;
-        padding: 0px !important;
+    .address-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
     }
 
-    .black {
-        color: #fcfcfe;
-        background-color: #000000;
-        height: 50%;
-        padding: 0px !important;
+    .address-item i {
+        color: #000;
+        font-size: 14px;
+        margin-top: 4px;
+        opacity: 0.7;
     }
 
-    .coming_soon {
-        width: 85%;
-        margin: auto 0;
-        left: 5%;
+    .address-item div { font-family: 'Inter', sans-serif; }
+
+    .country-tag {
+        display: block;
+        font-weight: 600;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #000;
+        margin-bottom: 2px;
     }
 
-    @media screen and (max-width: 767px) {
-        .black .coming_soon {
-            bottom: -18px;
-        }
-
-        .white .coming_soon {
-            top: -4px;
-        }
-
-        div {
-            font-size: 72px;
-        }
+    .address-item p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.4;
+        color: #555;
+        font-weight: 300;
     }
 
-    .blinking-dots {
-        display: inline-block;
-    }
-
-    .blinking-dots span {
-        opacity: 0;
-        animation: blink 1.5s infinite;
-    }
-
-    .blinking-dots span:nth-child(1) {
-        animation-delay: 0s;
-    }
-
-    .blinking-dots span:nth-child(2) {
-        animation-delay: 0.3s;
-    }
-
-    .blinking-dots span:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-
-    @keyframes blink {
-        0%,
-        100% {
-            opacity: 0;
-        }
-
-        50% {
-            opacity: 1;
-        }
-    }
-
-    /** Social Icons **/
+    /* Social Icons */
     .social-icons {
         position: absolute;
-        bottom: 20px;
-        width: 100%;
-        text-align: center;
-        z-index: 100;
+        bottom: 40px;
+        left: 40px;
+        z-index: 200;
     }
 
     .social-icons a {
-        margin: 0 20px;
-        font-size: 48px;
+        margin-right: 25px;
+        font-size: 28px;
         color: #000;
         text-decoration: none;
-        transition: opacity 0.3s;
+        transition: all 0.3s ease;
     }
 
-    .social-icons a:hover {
-        opacity: 0.6;
+    .social-icons a:hover { transform: translateY(-5px); opacity: 0.6; }
+
+    /* Dot Animation */
+    .blinking-dots span { opacity: 0; animation: blink 1.5s infinite; }
+    .blinking-dots span:nth-child(1) { animation-delay: 0s; }
+    .blinking-dots span:nth-child(2) { animation-delay: 0.3s; }
+    .blinking-dots span:nth-child(3) { animation-delay: 0.6s; }
+    @keyframes blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+    /* Responsive Design */
+    @media screen and (max-width: 1024px) {
+        .coming_soon { font-size: 100px; }
     }
 
     @media screen and (max-width: 767px) {
-        .social-icons a {
-            font-size: 32px;
-            margin: 0 15px;
+        .coming_soon { font-size: 60px; letter-spacing: -2px; }
+        .black .coming_soon { bottom: -15px; }
+        .white .coming_soon { top: -5px; }
+
+        .contact-footer {
+            right: 20px;
+            left: 20px;
+            bottom: 100px;
         }
+
+        .address-card {
+            max-width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .social-icons {
+            width: 100%;
+            left: 0;
+            text-align: center;
+            bottom: 30px;
+        }
+        
+        .social-icons a { margin: 0 15px; }
     }
 </style>
 
