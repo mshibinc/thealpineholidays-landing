@@ -5,279 +5,271 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>The Alpine Holidays</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            background: #fcfcfe;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        /* Headline */
+        .headline {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #000;
+            max-width: 90vw;
+            font-size: clamp(2.4rem, 7vw + 1vh, 9vh);
+            line-height: 1;
+            margin-bottom: max(8vh, 5rem);
+        }
+
+        .headline .under { 
+            opacity: 0.45; 
+            font-weight: 600;
+        }
+
+        .blinking-dots {
+            display: inline-flex;
+            gap: 3px;
+            margin-left: 6px;
+            vertical-align: baseline;
+        }
+
+        .blinking-dots span {
+            display: inline-block;
+            width: 0.28ch;
+            height: 0.28ch;
+            background: currentColor;
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulse 1.6s infinite ease-in-out;
+        }
+        .blinking-dots span:nth-child(2) { animation-delay: 0.3s; }
+        .blinking-dots span:nth-child(3) { animation-delay: 0.6s; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ✨ Enhanced Address Card ✨ */
+        .address-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.06),
+                0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            max-width: 380px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .address-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 16px 40px rgba(0, 0, 0, 0.1),
+                0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Subtle top accent bar */
+        .address-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #000;
+            opacity: 0.08;
+        }
+
+        .address-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .address-item, .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .icon-box {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .icon-box i {
+            font-size: 14px;
+            color: #000;
+            opacity: 0.7;
+        }
+
+        .info {
+            text-align: left;
+        }
+
+        .country-tag {
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .address-text, .contact-text {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #000;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
+        .badge i { font-size: 9px; }
+
+        /* Social Icons */
+        .social-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .social-icons a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 
+                0 4px 12px rgba(0,0,0,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.12) rotate(2deg);
+            box-shadow: 
+                0 6px 18px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            background: #f8f8f8;
+        }
+
+        /* Footer anchor — safe spacing */
+        footer {
+            position: absolute;
+            bottom: max(24px, 4vh);
+            left: 0;
+            right: 0;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
+        }
+    </style>
 </head>
 <body>
-    <div class="split-screen">
-        <div class="black-section">
-            <div class="text-layer">Under</div>
-        </div>
-        <div class="white-section">
-            <div class="text-layer">
-                maintenance<span class="blinking-dots"><span>.</span><span>.</span><span>.</span></span>
-            </div>
-        </div>
-    </div>
+    <h1 class="headline">
+        <span class="under">Under</span> maintenance
+        <span class="blinking-dots"><span></span><span></span><span></span></span>
+    </h1>
 
-    <footer class="footer">
+    <footer>
         <div class="address-card">
-            <div class="address-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div>
-                    <span class="country-tag">Dubai (UAE)</span>
-                    <p>1st Floor, Block A, Spectrum Building, Oud Metha</p>
+            <div class="address-list">
+                <div class="address-item">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info">
+                        <div class="country-tag">Dubai (UAE)</div>
+                        <p class="address-text">1st Floor, Block A, Spectrum Building, Oud Metha</p>
+                    </div>
                 </div>
-            </div>
-            <div class="address-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div>
-                    <span class="country-tag">India</span>
-                    <p>3rd Floor, HiLITE Business Park, Kozhikode, Kerala, 673014</p>
+                <div class="address-item">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info">
+                        <div class="country-tag">India</div>
+                        <p class="address-text">3rd Floor, HiLITE Business Park, Kozhikode, Kerala, 673014</p>
+                    </div>
                 </div>
-            </div>
-            <div class="address-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div>
-                    <span class="country-tag">Georgia</span>
-                    <p>2nd Floor, Hualing Tbilisi Sea Plaza, 22 J. Lezhava str, 0152</p>
+                   <div class="address-item">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                   
+                     <div class="info">
+                        <div class="country-tag">Georgia</div>
+                        <p class="address-text"> 2nd Floor, Hualing Tbilisi Sea Plaza, 22 J. Lezhava str, 0152</p>
+                    </div>
                 </div>
+               
+             
             </div>
-        </div>
 
-        <div class="social-icons">
-            <a href="https://wa.me/971501879007" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.instagram.com/thealpineholidays/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/thealpineholidays/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <div class="social-section">
+                <div class="social-icons">
+                    <a href="https://wa.me/971501879007" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/thealpineholidays/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/thealpineholidays/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    html, body {
-        height: 100vh;
-        overflow: hidden;
-        background-color: #fcfcfe;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .split-screen {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        position: relative;
-        z-index: 1;
-    }
-
-    .black-section,
-    .white-section {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .black-section { background-color: #000; }
-    .white-section { background-color: #fcfcfe; }
-
-    .text-layer {
-        font-family: 'Josefin Slab', serif;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        position: relative;
-        z-index: 10;
-    }
-
-    /* Smart responsive font: scales with viewport but respects safe margins */
-    .black-section .text-layer,
-    .white-section .text-layer {
-        font-size: clamp(2.5rem, 6vw + 2vh, 10vh);
-        max-width: 90vw;
-    }
-
-    .black-section .text-layer { color: #fcfcfe; }
-    .white-section .text-layer { color: #000; }
-
-    /* Prevent overlap: add vertical padding to sections */
-    .black-section,
-    .white-section {
-        padding-top: clamp(1rem, 3vh, 2rem);
-        padding-bottom: clamp(3rem, 8vh, 6rem); /* extra space at bottom for footer clearance */
-    }
-
-    /* Blinking dots */
-    .blinking-dots {
-        display: inline-flex;
-        gap: 3px;
-    }
-
-    .blinking-dots span {
-        display: inline-block;
-        opacity: 0;
-        animation: blink-stagger 1.4s infinite ease-in-out;
-        font-size: inherit;
-    }
-
-    .blinking-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .blinking-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes blink-stagger {
-        0%, 100% { opacity: 0; transform: scale(0.5); }
-        50% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Footer: now anchored to safe bottom margin */
-    .footer {
-        position: absolute;
-        bottom: 16px;
-        left: 16px;
-        right: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        z-index: 100;
-        pointer-events: none;
-    }
-
-    .footer * {
-        pointer-events: auto;
-    }
-
-    .address-card {
-        background: rgba(255, 255, 255, 0.94);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 14px;
-        padding: 12px 16px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        max-width: 300px;
-        font-size: 0.875rem;
-    }
-
-    .address-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-        line-height: 1.3;
-    }
-
-    .address-item i {
-        color: #000;
-        font-size: 11px;
-        flex-shrink: 0;
-        margin-top: 2px;
-        opacity: 0.7;
-    }
-
-    .country-tag {
-        font-weight: 600;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #000;
-        margin-right: 4px;
-    }
-
-    .address-item p {
-        display: inline;
-        margin: 0;
-        font-size: 11px;
-        color: #444;
-        font-weight: 500;
-    }
-
-    .social-icons {
-        display: flex;
-        gap: 14px;
-    }
-
-    .social-icons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.92);
-        color: #000;
-        font-size: 18px;
-        text-decoration: none;
-        transition: transform 0.2s, background 0.2s;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.07);
-        border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .social-icons a:hover {
-        transform: translateY(-2px) scale(1.05);
-        background: white;
-    }
-
-    /* Mobile: stack footer vertically */
-    @media (max-width: 768px) {
-        .footer {
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            bottom: 20px;
-        }
-
-        .black-section,
-        .white-section {
-            padding-top: clamp(1rem, 4vh, 2rem);
-            padding-bottom: clamp(4rem, 12vh, 8rem); /* more bottom clearance on mobile */
-        }
-
-        .text-layer {
-            font-size: clamp(2.2rem, 8vw + 1vh, 9vh);
-        }
-    }
-
-    /* Very short screens (e.g., iPhone SE landscape) */
-    @media (max-height: 480px) {
-        .black-section,
-        .white-section {
-            padding-top: 0.8rem;
-            padding-bottom: 3.5rem;
-        }
-
-        .text-layer {
-            font-size: clamp(1.8rem, 5vw + 1vh, 7vh);
-        }
-
-        .footer {
-            bottom: 12px;
-            font-size: 0.8rem;
-        }
-
-        .address-card {
-            padding: 10px 14px;
-            gap: 6px;
-        }
-
-        .country-tag,
-        .address-item p {
-            font-size: 9px;
-        }
-
-        .address-item i {
-            font-size: 10px;
-        }
-    }
-</style>
 </html>
 
