@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>The Alpine Holidays</title>
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class='black'>
-        <div class="coming_soon">Under</div>
-    </div>
-    <div class="white">
-        <div class="coming_soon">
-            maintenance<span class="blinking-dots"><span>.</span><span>.</span><span>.</span></span>
+    <div class="split-screen">
+        <div class="black-section">
+            <div class="text-layer">Under</div>
+        </div>
+        <div class="white-section">
+            <div class="text-layer">
+                maintenance<span class="blinking-dots"><span>.</span><span>.</span><span>.</span></span>
+            </div>
         </div>
     </div>
 
-    <div class="contact-footer">
+    <footer class="footer">
         <div class="address-card">
             <div class="address-item">
                 <i class="fa-solid fa-location-dot"></i>
                 <div>
-                    <span class="country-tag">Dubai(UAE)</span>
+                    <span class="country-tag">Dubai (UAE)</span>
                     <p>1st Floor, Block A, Spectrum Building, Oud Metha</p>
                 </div>
             </div>
@@ -44,139 +43,241 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="social-icons">
-        <a href="https://wa.me/971501879007" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/thealpineholidays/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/thealpineholidays/" target="_blank"><i class="fab fa-facebook"></i></a>
-    </div>
+        <div class="social-icons">
+            <a href="https://wa.me/971501879007" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/thealpineholidays/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/thealpineholidays/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
 </body>
 
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:700);
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    html, body { height: 100%; margin: 0; overflow: hidden; background-color: #fcfcfe; }
-    div { font-family: 'Josefin Slab', serif; position: relative; }
+    html, body {
+        height: 100vh;
+        overflow: hidden;
+        background-color: #fcfcfe;
+        font-family: 'Inter', sans-serif;
+    }
 
-    /* Main Typography */
-    .coming_soon { font-size: 160px; width: 85%; margin: auto 0; left: 5%; letter-spacing: -5px; }
-    .black { color: #fcfcfe; background-color: #000; height: 50vh; }
-    .white { color: #000; background-color: #fcfcfe; height: 50vh; }
-    .black .coming_soon { position: absolute; bottom: -40px; }
-    .white .coming_soon { position: absolute; top: -8px; }
+    .split-screen {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        z-index: 1;
+    }
 
-    /* Attractive Address Block */
-    .contact-footer {
+    .black-section,
+    .white-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .black-section { background-color: #000; }
+    .white-section { background-color: #fcfcfe; }
+
+    .text-layer {
+        font-family: 'Josefin Slab', serif;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Smart responsive font: scales with viewport but respects safe margins */
+    .black-section .text-layer,
+    .white-section .text-layer {
+        font-size: clamp(2.5rem, 6vw + 2vh, 10vh);
+        max-width: 90vw;
+    }
+
+    .black-section .text-layer { color: #fcfcfe; }
+    .white-section .text-layer { color: #000; }
+
+    /* Prevent overlap: add vertical padding to sections */
+    .black-section,
+    .white-section {
+        padding-top: clamp(1rem, 3vh, 2rem);
+        padding-bottom: clamp(3rem, 8vh, 6rem); /* extra space at bottom for footer clearance */
+    }
+
+    /* Blinking dots */
+    .blinking-dots {
+        display: inline-flex;
+        gap: 3px;
+    }
+
+    .blinking-dots span {
+        display: inline-block;
+        opacity: 0;
+        animation: blink-stagger 1.4s infinite ease-in-out;
+        font-size: inherit;
+    }
+
+    .blinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .blinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink-stagger {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Footer: now anchored to safe bottom margin */
+    .footer {
         position: absolute;
-        bottom: 30px;
-        right: 40px;
-        z-index: 200;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    .footer * {
+        pointer-events: auto;
     }
 
     .address-card {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        padding: 20px;
-        border-radius: 15px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 14px;
+        padding: 12px 16px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        max-width: 320px;
+        gap: 8px;
+        max-width: 300px;
+        font-size: 0.875rem;
     }
 
     .address-item {
         display: flex;
         align-items: flex-start;
-        gap: 12px;
+        gap: 8px;
+        line-height: 1.3;
     }
 
     .address-item i {
         color: #000;
-        font-size: 14px;
-        margin-top: 4px;
+        font-size: 11px;
+        flex-shrink: 0;
+        margin-top: 2px;
         opacity: 0.7;
     }
 
-    .address-item div { font-family: 'Inter', sans-serif; }
-
     .country-tag {
-        display: block;
         font-weight: 600;
         font-size: 10px;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 0.5px;
         color: #000;
-        margin-bottom: 2px;
+        margin-right: 4px;
     }
 
     .address-item p {
+        display: inline;
         margin: 0;
         font-size: 11px;
-        line-height: 1.4;
-        color: #555;
-        font-weight: 300;
+        color: #444;
+        font-weight: 500;
     }
 
-    /* Social Icons */
     .social-icons {
-        position: absolute;
-        bottom: 40px;
-        left: 40px;
-        z-index: 200;
+        display: flex;
+        gap: 14px;
     }
 
     .social-icons a {
-        margin-right: 25px;
-        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
         color: #000;
+        font-size: 18px;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: transform 0.2s, background 0.2s;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+        border: 1px solid rgba(0,0,0,0.06);
     }
 
-    .social-icons a:hover { transform: translateY(-5px); opacity: 0.6; }
-
-    /* Dot Animation */
-    .blinking-dots span { opacity: 0; animation: blink 1.5s infinite; }
-    .blinking-dots span:nth-child(1) { animation-delay: 0s; }
-    .blinking-dots span:nth-child(2) { animation-delay: 0.3s; }
-    .blinking-dots span:nth-child(3) { animation-delay: 0.6s; }
-    @keyframes blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
-
-    /* Responsive Design */
-    @media screen and (max-width: 1024px) {
-        .coming_soon { font-size: 100px; }
+    .social-icons a:hover {
+        transform: translateY(-2px) scale(1.05);
+        background: white;
     }
 
-    @media screen and (max-width: 767px) {
-        .coming_soon { font-size: 60px; letter-spacing: -2px; }
-        .black .coming_soon { bottom: -15px; }
-        .white .coming_soon { top: -5px; }
+    /* Mobile: stack footer vertically */
+    @media (max-width: 768px) {
+        .footer {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            bottom: 20px;
+        }
 
-        .contact-footer {
-            right: 20px;
-            left: 20px;
-            bottom: 100px;
+        .black-section,
+        .white-section {
+            padding-top: clamp(1rem, 4vh, 2rem);
+            padding-bottom: clamp(4rem, 12vh, 8rem); /* more bottom clearance on mobile */
+        }
+
+        .text-layer {
+            font-size: clamp(2.2rem, 8vw + 1vh, 9vh);
+        }
+    }
+
+    /* Very short screens (e.g., iPhone SE landscape) */
+    @media (max-height: 480px) {
+        .black-section,
+        .white-section {
+            padding-top: 0.8rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .text-layer {
+            font-size: clamp(1.8rem, 5vw + 1vh, 7vh);
+        }
+
+        .footer {
+            bottom: 12px;
+            font-size: 0.8rem;
         }
 
         .address-card {
-            max-width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 14px;
+            gap: 6px;
         }
 
-        .social-icons {
-            width: 100%;
-            left: 0;
-            text-align: center;
-            bottom: 30px;
+        .country-tag,
+        .address-item p {
+            font-size: 9px;
         }
-        
-        .social-icons a { margin: 0 15px; }
+
+        .address-item i {
+            font-size: 10px;
+        }
     }
 </style>
-
 </html>
+
